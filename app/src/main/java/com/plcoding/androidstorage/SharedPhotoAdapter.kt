@@ -1,14 +1,19 @@
 package com.plcoding.androidstorage
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.plcoding.androidstorage.databinding.ItemPhotoBinding
+import com.squareup.picasso.Picasso
 
 class SharedPhotoAdapter(
+    private val context:Context,
     private val onPhotoClick: (SharedStoragePhoto) -> Unit
 ) : ListAdapter<SharedStoragePhoto, SharedPhotoAdapter.PhotoViewHolder>(Companion) {
 
@@ -37,7 +42,9 @@ class SharedPhotoAdapter(
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val photo = currentList[position]
         holder.binding.apply {
-            ivPhoto.setImageURI(photo.contentUri)
+        //    Picasso.get().load(photo.contentUri).resize(200,200).into(ivPhoto)
+        //    Glide.with(context).load(photo.contentUri).into(ivPhoto)
+           // ivPhoto.setImageURI(photo.contentUri)
 
             val aspectRatio = photo.width.toFloat() / photo.height.toFloat()
             ConstraintSet().apply {
